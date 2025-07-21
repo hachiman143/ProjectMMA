@@ -1,0 +1,517 @@
+{
+    "users": [
+        {
+            "name": "Nguyễn Văn An",
+            "email": "nguyenvanan@example.com",
+            "password": "123456",
+            "phone": "0901234567",
+            "role": "user",
+            "avatar": "",
+            "isActive": true
+        },
+        {
+            "name": "Trần Thị Bình",
+            "email": "tranthibinh@example.com",
+            "password": "123456",
+            "phone": "0901234568",
+            "role": "user",
+            "avatar": "",
+            "isActive": true
+        },
+        {
+            "name": "Lê Văn Cường",
+            "email": "levancuong@example.com",
+            "password": "123456",
+            "phone": "0901234569",
+            "role": "club_owner",
+            "avatar": "",
+            "isActive": true
+        },
+        {
+            "name": "Phạm Thị Dung",
+            "email": "phamthidung@example.com",
+            "password": "123456",
+            "phone": "0901234570",
+            "role": "club_owner",
+            "avatar": "",
+            "isActive": true
+        },
+        {
+            "name": "Admin System",
+            "email": "admin@billiards.com",
+            "password": "admin123",
+            "phone": "0901234571",
+            "role": "admin",
+            "avatar": "",
+            "isActive": true
+        }
+    ],
+    "clubs": [
+        {
+            "name": "Billiards Club VIP",
+            "address": "123 Nguyễn Huệ, Quận 1, TP.HCM",
+            "phone": "0901234567",
+            "email": "info@billiardsclubvip.com",
+            "description": "Quán billiards cao cấp với không gian sang trọng, phục vụ 24/7",
+            "images": [
+                "https://example.com/images/club1-1.jpg",
+                "https://example.com/images/club1-2.jpg"
+            ],
+            "rating": 4.8,
+            "totalRatings": 156,
+            "pricePerHour": 50000,
+            "openingHours": {
+                "open": "07:00",
+                "close": "23:00"
+            },
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    106.6983,
+                    10.7769
+                ]
+            },
+            "amenities": [
+                "parking",
+                "wifi",
+                "air_conditioning",
+                "food",
+                "drinks",
+                "vip_room"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Golden Cue Billiards",
+            "address": "456 Lê Lợi, Quận 1, TP.HCM",
+            "phone": "0901234568",
+            "email": "info@goldencue.com",
+            "description": "Quán billiards chuyên nghiệp với nhiều bàn VIP",
+            "images": [
+                "https://example.com/images/club2-1.jpg",
+                "https://example.com/images/club2-2.jpg"
+            ],
+            "rating": 4.6,
+            "totalRatings": 89,
+            "pricePerHour": 45000,
+            "openingHours": {
+                "open": "08:00",
+                "close": "22:00"
+            },
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    106.7000,
+                    10.7750
+                ]
+            },
+            "amenities": [
+                "parking",
+                "wifi",
+                "air_conditioning",
+                "food",
+                "drinks"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Royal Billiards Lounge",
+            "address": "789 Trần Hưng Đạo, Quận 5, TP.HCM",
+            "phone": "0901234569",
+            "email": "info@royalbilliards.com",
+            "description": "Không gian billiards sang trọng với dịch vụ cao cấp",
+            "images": [
+                "https://example.com/images/club3-1.jpg",
+                "https://example.com/images/club3-2.jpg"
+            ],
+            "rating": 4.9,
+            "totalRatings": 234,
+            "pricePerHour": 60000,
+            "openingHours": {
+                "open": "09:00",
+                "close": "24:00"
+            },
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    106.6650,
+                    10.7530
+                ]
+            },
+            "amenities": [
+                "parking",
+                "wifi",
+                "air_conditioning",
+                "food",
+                "drinks",
+                "vip_room",
+                "tournament_space"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Elite Billiards Center",
+            "address": "321 Võ Văn Tần, Quận 3, TP.HCM",
+            "phone": "0901234570",
+            "email": "info@elitebilliards.com",
+            "description": "Trung tâm billiards chuyên nghiệp với nhiều giải đấu",
+            "images": [
+                "https://example.com/images/club4-1.jpg",
+                "https://example.com/images/club4-2.jpg"
+            ],
+            "rating": 4.7,
+            "totalRatings": 178,
+            "pricePerHour": 55000,
+            "openingHours": {
+                "open": "08:00",
+                "close": "23:00"
+            },
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    106.6900,
+                    10.7800
+                ]
+            },
+            "amenities": [
+                "parking",
+                "wifi",
+                "air_conditioning",
+                "food",
+                "drinks",
+                "tournament_space"
+            ],
+            "isActive": true
+        }
+    ],
+    "tables": [
+        {
+            "number": 1,
+            "type": "VIP",
+            "status": "available",
+            "pricePerHour": 60000,
+            "description": "Bàn VIP với đệm cao cấp",
+            "features": [
+                "air_conditioning",
+                "premium_cushions",
+                "led_lighting"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 2,
+            "type": "Standard",
+            "status": "occupied",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 3,
+            "type": "Standard",
+            "status": "available",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 4,
+            "type": "VIP",
+            "status": "occupied",
+            "pricePerHour": 60000,
+            "description": "Bàn VIP với đệm cao cấp",
+            "features": [
+                "air_conditioning",
+                "premium_cushions",
+                "led_lighting"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 5,
+            "type": "Standard",
+            "status": "available",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 6,
+            "type": "VIP",
+            "status": "available",
+            "pricePerHour": 60000,
+            "description": "Bàn VIP với đệm cao cấp",
+            "features": [
+                "air_conditioning",
+                "premium_cushions",
+                "led_lighting"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 7,
+            "type": "Standard",
+            "status": "occupied",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 8,
+            "type": "Standard",
+            "status": "available",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 9,
+            "type": "VIP",
+            "status": "available",
+            "pricePerHour": 60000,
+            "description": "Bàn VIP với đệm cao cấp",
+            "features": [
+                "air_conditioning",
+                "premium_cushions",
+                "led_lighting"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 10,
+            "type": "Standard",
+            "status": "occupied",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 11,
+            "type": "Standard",
+            "status": "available",
+            "pricePerHour": 50000,
+            "description": "Bàn tiêu chuẩn",
+            "features": [
+                "air_conditioning"
+            ],
+            "isActive": true
+        },
+        {
+            "number": 12,
+            "type": "VIP",
+            "status": "available",
+            "pricePerHour": 60000,
+            "description": "Bàn VIP với đệm cao cấp",
+            "features": [
+                "air_conditioning",
+                "premium_cushions",
+                "led_lighting"
+            ],
+            "isActive": true
+        }
+    ],
+    "tournaments": [
+        {
+            "name": "Giải Billiards Mùa Xuân 2024",
+            "description": "Giải đấu billiards thường niên với nhiều giải thưởng hấp dẫn",
+            "startDate": "2024-03-15T00:00:00.000Z",
+            "endDate": "2024-03-17T00:00:00.000Z",
+            "startTime": "14:00",
+            "maxParticipants": 64,
+            "currentParticipants": 32,
+            "entryFee": 200000,
+            "prizePool": 10000000,
+            "prizes": [
+                {
+                    "rank": 1,
+                    "amount": 5000000,
+                    "description": "Giải nhất"
+                },
+                {
+                    "rank": 2,
+                    "amount": 3000000,
+                    "description": "Giải nhì"
+                },
+                {
+                    "rank": 3,
+                    "amount": 2000000,
+                    "description": "Giải ba"
+                }
+            ],
+            "status": "open",
+            "tournamentType": "single_elimination",
+            "rules": "Luật chơi theo quy định của Liên đoàn Billiards Việt Nam",
+            "images": [
+                "https://example.com/images/tournament1-1.jpg",
+                "https://example.com/images/tournament1-2.jpg"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Championship Cup 2024",
+            "description": "Giải đấu cấp cao với sự tham gia của các tay cơ hàng đầu",
+            "startDate": "2024-03-22T00:00:00.000Z",
+            "endDate": "2024-03-24T00:00:00.000Z",
+            "startTime": "09:00",
+            "maxParticipants": 128,
+            "currentParticipants": 45,
+            "entryFee": 500000,
+            "prizePool": 20000000,
+            "prizes": [
+                {
+                    "rank": 1,
+                    "amount": 10000000,
+                    "description": "Giải nhất"
+                },
+                {
+                    "rank": 2,
+                    "amount": 6000000,
+                    "description": "Giải nhì"
+                },
+                {
+                    "rank": 3,
+                    "amount": 4000000,
+                    "description": "Giải ba"
+                }
+            ],
+            "status": "open",
+            "tournamentType": "double_elimination",
+            "rules": "Luật chơi chuyên nghiệp với hệ thống loại kép",
+            "images": [
+                "https://example.com/images/tournament2-1.jpg",
+                "https://example.com/images/tournament2-2.jpg"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Giải Giao Hữu Tháng 3",
+            "description": "Giải đấu giao hữu dành cho người mới chơi",
+            "startDate": "2024-03-28T00:00:00.000Z",
+            "endDate": "2024-03-28T00:00:00.000Z",
+            "startTime": "16:00",
+            "maxParticipants": 64,
+            "currentParticipants": 64,
+            "entryFee": 100000,
+            "prizePool": 5000000,
+            "prizes": [
+                {
+                    "rank": 1,
+                    "amount": 2500000,
+                    "description": "Giải nhất"
+                },
+                {
+                    "rank": 2,
+                    "amount": 1500000,
+                    "description": "Giải nhì"
+                },
+                {
+                    "rank": 3,
+                    "amount": 1000000,
+                    "description": "Giải ba"
+                }
+            ],
+            "status": "full",
+            "tournamentType": "round_robin",
+            "rules": "Luật chơi đơn giản, phù hợp cho người mới",
+            "images": [
+                "https://example.com/images/tournament3-1.jpg"
+            ],
+            "isActive": true
+        },
+        {
+            "name": "Pro Tournament Series",
+            "description": "Chuỗi giải đấu chuyên nghiệp với nhiều vòng đấu",
+            "startDate": "2024-04-05T00:00:00.000Z",
+            "endDate": "2024-04-07T00:00:00.000Z",
+            "startTime": "10:00",
+            "maxParticipants": 32,
+            "currentParticipants": 28,
+            "entryFee": 1000000,
+            "prizePool": 50000000,
+            "prizes": [
+                {
+                    "rank": 1,
+                    "amount": 25000000,
+                    "description": "Giải nhất"
+                },
+                {
+                    "rank": 2,
+                    "amount": 15000000,
+                    "description": "Giải nhì"
+                },
+                {
+                    "rank": 3,
+                    "amount": 10000000,
+                    "description": "Giải ba"
+                }
+            ],
+            "status": "open",
+            "tournamentType": "swiss_system",
+            "rules": "Luật chơi hệ Thụy Sĩ với nhiều vòng đấu",
+            "images": [
+                "https://example.com/images/tournament4-1.jpg",
+                "https://example.com/images/tournament4-2.jpg"
+            ],
+            "isActive": true
+        }
+    ],
+    "bookings": [
+        {
+            "startTime": "2024-03-10T14:00:00.000Z",
+            "endTime": "2024-03-10T16:00:00.000Z",
+            "duration": 2,
+            "totalPrice": 100000,
+            "bookingType": "hourly",
+            "status": "completed",
+            "paymentStatus": "paid",
+            "paymentMethod": "cash",
+            "notes": "Đặt bàn cho nhóm bạn"
+        },
+        {
+            "startTime": "2024-03-12T19:00:00.000Z",
+            "endTime": "2024-03-12T22:00:00.000Z",
+            "duration": 3,
+            "totalPrice": 135000,
+            "bookingType": "combo",
+            "comboDetails": {
+                "name": "Combo 3 giờ",
+                "hours": 3,
+                "discount": 15,
+                "originalPrice": 150000
+            },
+            "status": "confirmed",
+            "paymentStatus": "paid",
+            "paymentMethod": "online",
+            "notes": "Chơi với bạn bè"
+        },
+        {
+            "startTime": "2024-03-15T10:00:00.000Z",
+            "endTime": "2024-03-15T12:00:00.000Z",
+            "duration": 2,
+            "totalPrice": 120000,
+            "bookingType": "hourly",
+            "status": "active",
+            "paymentStatus": "paid",
+            "paymentMethod": "card",
+            "notes": "Luyện tập"
+        }
+    ]
+}
