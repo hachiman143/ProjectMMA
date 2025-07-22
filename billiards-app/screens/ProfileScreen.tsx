@@ -90,7 +90,7 @@ const ProfileScreen = ({ navigation, onLogout  }: { navigation: any,  onLogout: 
         {/* Profile Picture Section */}
         <View style={styles.profilePicContainer}>
           <Image
-            source={{ uri: user?.avatar || 'https://via.placeholder.com/100' }} // If no profile picture, show placeholder
+            source={{ uri: user?.avatar || 'https://dimensions.edu.vn/upload/2025/03/anh-dai-dien-facebook-mac-dinh-001.webp' }} // If no profile picture, show placeholder
             style={styles.profilePic}
           />
           <TouchableOpacity style={styles.editPicButton}>
@@ -110,10 +110,10 @@ const ProfileScreen = ({ navigation, onLogout  }: { navigation: any,  onLogout: 
 
           <Text style={styles.label}>Email</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, { backgroundColor: '#eee', color: '#888' }]}
             value={formData.email}
             onChangeText={(value) => handleInputChange("email", value)}
-            editable={editMode}
+            editable={false}
             keyboardType="email-address"
           />
 

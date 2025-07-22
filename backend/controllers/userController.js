@@ -160,11 +160,13 @@ const getUserTournaments = async (req, res) => {
 // @access  Private (Admin)
 const getAllUsers = async (req, res) => {
     try {
-        const { page = 1, limit = 10, role, search } = req.query;
+        const { page = 1, limit = 10, search } = req.query;
         const skip = (page - 1) * limit;
 
-        const query = {};
-        if (role) query.role = role;
+        // Chỉ lấy người dùng có role là 'user'
+        const query = { role: 'user' };
+
+        // Nếu có từ khóa tìm kiếm
         if (search) {
             query.$or = [
                 { name: { $regex: search, $options: 'i' } },
@@ -199,6 +201,7 @@ const getAllUsers = async (req, res) => {
         });
     }
 };
+
 
 // @desc    Get single user (Admin only)
 // @route   GET /api/users/:id

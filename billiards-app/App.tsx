@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
-
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 // Import screens
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -17,11 +18,13 @@ import ChatScreen from "./screens/ChatScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BookingHistoryScreen from "./screens/BookingHistoryScreen";
+import UsersPage from "@/screens/admin/UsersPage";
+import AdminDashboard from "@/screens/admin/AdminDashboard";
 
 // Tạo Stack và Tab navigator
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
+const AdminTab = createBottomTabNavigator();
 // Stack riêng cho Home (có thể push tới ClubDetail hoặc Booking)
 function HomeStack({ onLogout }: { onLogout: () => void }) {
   return (
@@ -44,9 +47,60 @@ function HomeStack({ onLogout }: { onLogout: () => void }) {
       <Stack.Screen name="Profile">
         {(props) => <ProfileScreen {...props} onLogout={onLogout} />}
       </Stack.Screen>
+      
     </Stack.Navigator>
   );
 }
+function AdminTabs({ onLogout }: { onLogout: () => void }) {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName: keyof typeof Ionicons.glyphMap = "help";
+
+          if (route.name === "AdminDashboard") {
+            iconName = focused ? "grid" : "grid-outline";
+          } else if (route.name === "Users") {
+            iconName = focused ? "people" : "people-outline";
+          } else if (route.name === "Profile") {
+            iconName = focused ? "person" : "person-outline";
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "#2563eb",
+        tabBarInactiveTintColor: "gray",
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen
+        name="AdminDashboard"
+        component={require("./screens/admin/AdminDashboard").default}
+        options={{ title: "Trang Admin" }}
+      />
+      <Tab.Screen name="Profile">
+        {(props) => <ProfileScreen {...props} onLogout={onLogout} />}
+      </Tab.Screen>
+      <Tab.Screen
+        name="Users"
+        component={UsersPage}
+        options={{ title: "Người dùng" }}
+      />
+     <Tab.Screen
+      name="Bookings"
+      component={require("./screens/admin/AdminBookingsScreen").default}
+      options={{
+        title: "Đặt bàn",
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="calendar-outline" size={size} color={color} />
+        ),
+      }}
+    />
+
+    </Tab.Navigator>
+  );
+}
+
 
 // Tabs chính sau khi đăng nhập
 function MainTabs({ onLogout }: { onLogout: () => void }) {
@@ -99,18 +153,32 @@ function MainTabs({ onLogout }: { onLogout: () => void }) {
 
 // App chính
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<any | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+   const handleLogin = (user: any, token: string) => {
+    setUser(user);
+    setToken(token);
+  };
+  const handleLogout = async () => {
+    await AsyncStorage.clear();
+    setUser(null);
+    setToken(null);
+  };
 
-  return (
+   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      {isLoggedIn ? (
-        <MainTabs onLogout={() => setIsLoggedIn(false)} />
+      {user && token ? (
+          user.role === "admin" ? (
+            <AdminTabs onLogout={handleLogout} />
+          ) : (
+            <MainTabs onLogout={handleLogout} />
+          )
       ) : (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login">
             {(props) => (
-              <LoginScreen {...props} onLogin={() => setIsLoggedIn(true)} />
+              <LoginScreen {...props} onLogin={handleLogin} />
             )}
           </Stack.Screen>
           <Stack.Screen name="Register" component={RegisterScreen} />

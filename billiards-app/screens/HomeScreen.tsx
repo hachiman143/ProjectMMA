@@ -19,7 +19,8 @@ import { ClubService } from "@/service/club.service";
 export default function HomeScreen({ navigation }: { navigation: any }) {
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [stats, setStats] = useState({clubs: 0, availableTables: 0,tournaments: 0,});
   const fetchData = async () => {
     try {
       const response = await ClubService.getAll();
@@ -28,6 +29,15 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
       console.log(error);
     }
   };
+  const fetchStats = async () => {
+  try {
+    const response = await fetch("http://192.168.145.107:5000/api/homes");
+    const json = await response.json();
+    setStats(json);
+  } catch (err) {
+    console.error("Lỗi lấy thống kê:", err);
+  }
+};
  useEffect(() => {
     const result = data.filter((club: any) =>
       club.name.toLowerCase().includes(searchText.toLowerCase())
@@ -36,13 +46,14 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
   }, [searchText, data]);
   useEffect(() => {
     fetchData();
+     fetchStats();
   }, []);
   const renderClubItem = ({ item }: { item: any }) => (
     <TouchableOpacity
       style={styles.clubCard}
       onPress={() => navigation.navigate("ClubDetail", { clubId: item._id })}
     >
-      <Image source={{ uri: item.image }} style={styles.clubImage} />
+      <Image source={{ uri: item?.images?.[0] }} style={styles.clubImage} />
       <View style={styles.clubInfo}>
         <View style={styles.clubHeader}>
           <Text style={styles.clubName}>{item.name}</Text>
@@ -120,17 +131,17 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
       <View style={styles.quickStats}>
         <View style={styles.statCard}>
           <Ionicons name="storefront-outline" size={24} color="#2563eb" />
-          <Text style={styles.statNumber}>25</Text>
+          <Text style={styles.statNumber}>{stats.clubs}</Text>
           <Text style={styles.statLabel}>Quán gần bạn</Text>
         </View>
         <View style={styles.statCard}>
           <Ionicons name="game-controller-outline" size={24} color="#10b981" />
-          <Text style={styles.statNumber}>180</Text>
+          <Text style={styles.statNumber}>{stats.availableTables}</Text>
           <Text style={styles.statLabel}>Bàn trống</Text>
         </View>
         <View style={styles.statCard}>
           <Ionicons name="trophy-outline" size={24} color="#f59e0b" />
-          <Text style={styles.statNumber}>8</Text>
+          <Text style={styles.statNumber}>{stats.tournaments}</Text>
           <Text style={styles.statLabel}>Giải đấu</Text>
         </View>
       </View>

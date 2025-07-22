@@ -32,6 +32,7 @@ export default function ClubDetailScreen({
   const fetchClub = async () => {
     try {
       const res = await ClubService.getDetailId(clubId);
+      
       setTable(res.data.tables);
       setClub(res?.data?.club);
     } catch (error) {
@@ -146,7 +147,7 @@ export default function ClubDetailScreen({
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image source={{ uri: club?.image }} style={styles.clubImage} />
+        <Image source={{ uri: club?.images?.[0] }} style={styles.clubImage} />
 
         <View style={styles.clubInfo}>
           <View style={styles.clubHeader}>

@@ -1,8 +1,8 @@
-const express = require("express");
-const { body } = require("express-validator");
+const express = require('express');
+const { body } = require('express-validator');
 const router = express.Router();
-const bookingController = require("../controllers/bookingController");
-const { protect, authorize } = require("../middleware/auth");
+const bookingController = require('../controllers/bookingController');
+const { protect, authorize } = require('../middleware/auth');
 
 // Validation rules
 const createBookingValidation = [
@@ -65,5 +65,7 @@ router.get(
   authorize("admin", "club_owner"),
   bookingController.getClubBookings
 );
+// routes/booking.route.js
+router.get("/admin/all", protect, authorize("admin"), bookingController.getAllUserBookings);
 
 module.exports = router;

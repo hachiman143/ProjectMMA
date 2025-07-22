@@ -34,6 +34,8 @@ app.use("/api/bookings", require("./routes/bookings"));
 app.use("/api/tournaments", require("./routes/tournaments"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/feedbacks", require("./routes/feedback"));
+app.use("/api", require("./routes/home"));
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK", message: "Billiards API is running" });

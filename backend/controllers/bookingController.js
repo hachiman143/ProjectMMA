@@ -242,7 +242,7 @@ const updateBookingStatus = async (req, res) => {
       booking.cancelledBy = req.user.userId;
       booking.cancelledAt = new Date();
     }
-
+   
     await booking.save();
 
     // Update table status if booking is cancelled
@@ -306,6 +306,7 @@ const cancelBooking = async (req, res) => {
     booking.cancellationReason = reason;
     booking.cancelledBy = req.user.userId;
     booking.cancelledAt = new Date();
+    
     await booking.save();
 
     // Update table status
@@ -377,6 +378,17 @@ const getClubBookings = async (req, res) => {
     });
   }
 };
+const getAllUserBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate("user", "name email")
+      .populate("table")
+      .populate("club");
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: "Không thể lấy danh sách bookings", error });
+  }
+};
 
 module.exports = {
   createBooking,
@@ -385,4 +397,5 @@ module.exports = {
   updateBookingStatus,
   cancelBooking,
   getClubBookings,
+  getAllUserBookings,
 };

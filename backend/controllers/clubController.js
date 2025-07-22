@@ -120,7 +120,7 @@ const getClub = async (req, res) => {
         }
 
         // Get tables for this club
-        const tables = await Table.find({ club: club._id, isActive: true })
+        const tables = await Table.find({ club: club._id })
             .sort({ number: 1 });
 
         // Get table statistics
@@ -280,6 +280,19 @@ const deleteClub = async (req, res) => {
 // @desc    Rate club
 // @route   POST /api/clubs/:id/rate
 // @access  Private
+const getAllClubsForAdmin = async (req, res) => {
+    try {
+        const clubs = await Club.find().populate('owner', 'name email role');
+        res.json({ success: true, data: clubs });
+    } catch (error) {
+        console.error('Admin get all clubs error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Lỗi server',
+            error: error.message
+        });
+    }
+};
 const rateClub = async (req, res) => {
     try {
         const { rating } = req.body;
@@ -331,5 +344,6 @@ module.exports = {
     createClub,
     updateClub,
     deleteClub,
-    rateClub
+    rateClub,
+    getAllClubsForAdmin
 }; 
